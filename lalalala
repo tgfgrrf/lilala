@@ -2096,6 +2096,8 @@ do
             end;
         end);
 
+
+
         Dropdown:SetValues();
         Dropdown:Display();
 
@@ -2137,6 +2139,22 @@ do
         Groupbox:Resize();
 
         Options[Idx] = Dropdown;
+
+        function Dropdown:Clear()
+            DropTitle.Text = tostring(text).." : "
+            isdropping = false
+            Dropdown:TweenSize(UDim2.new(0,470,0,31),"Out","Quad",0.3,true)
+            TweenService:Create(
+                DropImage,
+                TweenInfo.new(0.3,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
+                {Rotation = -90}
+            ):Play()
+            for i,v in next, DropScroll:GetChildren() do
+                if v:IsA("TextButton") then
+                    v:Destroy()
+                end
+            end
+        end;
 
         return Dropdown;
     end;
